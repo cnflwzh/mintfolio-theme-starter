@@ -1,34 +1,57 @@
 # Mintfolio Theme Starter
 
-这是一个可打包的最小独立主题示例。它只包含 `home`、`post`、自己的布局、样式和经 `?url` 导入的 SVG 资源；Core 会为未声明的可选页面使用内置 Minimal。受保护文章直接组合 Core 的 ProtectedArticle 组件。
+从两张 Astro 页面开始，写一个自己的 [Mintfolio](https://github.com/cnflwzh/mintfolio) 主题。
 
-主题只导入 `@mintfolio/core` 的主题公共入口，不能复制或相对导入宿主的 `src/core`、站点配置或内容集合。先在主题的开发环境中安装 SDK 的本地打包产物，再安装 Astro：
+这个仓库提供首页、文章页、一个布局和少量样式。归档、普通页面与 404 由 Core 补齐，密码文章直接使用 Core 的解锁组件。你可以先调整颜色和排版，再逐个替换页面。
 
-```sh
-npm install /absolute/path/to/mintfolio-theme-api-1.0.0.tgz /absolute/path/to/mintfolio-core-0.1.0.tgz astro@^7.3.2
-```
+## 开始修改
 
-将 `theme.mjs` 的 `id`、名称、作者、页面和设置改为自己的内容。包入口固定导出 `./theme`，宿主通过该入口定位清单：
+点击 GitHub 的 **Use this template**，或者克隆：
 
-```sh
-npm pack
-# 在 Mintfolio 站点中安装生成的 tgz，然后：
-# theme.config.mjs
-export default { theme: 'theme-mintfolio-starter', settings: {}, overrides: { pages: {} } };
-```
-
-主题作者应使用 Core 提供的 `post.url`、taxonomy term 的 `url` 和 `theme.urls`，不要自行拼接 `/blog/...` 或 `/about`。v1 的标签、分类和搜索使用已有 `/blog?q=…&tag=…&category=…` 查询路由，不新增端点。`extends`/主题继承不受支持。
-
-在宿主仓库中，`npm run test:theme-package` 会以 npm 12 兼容方式把 SDK、Core、Default 与 Starter 打成实际 tarball，安装到仓库外的独立站点，再检查公开 SDK、六页 fallback 构建、加密输出、CSS 和 SVG 资源。它验证包交付边界，不替代主题自身的浏览器验收。完整契约和边界说明见宿主项目的 `MintfolioCore/docs/theme-api.md`。
-
-## 独立仓库开发
-
-最小第三方主题示例。src 只含主题页面、布局、样式、资产。缺省页面和加密文章界面复用 Core；不复制 Core 实现。
-
-```sh
+~~~sh
+git clone https://github.com/cnflwzh/mintfolio-theme-starter.git my-theme
+cd my-theme
 npm ci
+~~~
+
+先改这些文件：
+
+| 文件 | 修改内容 |
+| --- | --- |
+| package.json | 自己的包名、作者和仓库地址；发布 npm 前移除 private |
+| theme.mjs | id、显示名称、版本、页面与设置项 |
+| src/layouts/StarterLayout.astro | 页面框架、SEO 与导航 |
+| src/pages/home.astro | 首页 |
+| src/pages/post.astro | 公开正文与密码文章 |
+| src/styles | 排版与样式 |
+
+## 放进站点里看
+
+在主题目录运行：
+
+~~~sh
 npm run check
 npm pack
-```
+~~~
 
-这个仓库可单独安装，不需要 PersonalSite 或其他源码目录。拆分前历史保留在原 PersonalSite，起点见 MIGRATION.md。 尚未发布的依赖固定在 vendor 和锁文件中；更新方式见 vendor/README.md。
+把生成的 tgz 放进已安装 Mintfolio 的测试站点，在站点目录运行：
+
+~~~sh
+npm install ./theme-mintfolio-starter-1.0.1.tgz
+mintfolio theme use theme-mintfolio-starter
+mintfolio dev
+~~~
+
+如果已经改过包名，命令也换成新名称。修改主题后重新打包安装，发布新版本时增加版本号。
+
+## 写页面时记住
+
+页面从 Astro.props 取得 theme 和 page。文章链接使用 post.url，导航使用 theme.urls。公开正文在 page.body.html，密码文章交给 ProtectedArticle 组件。主题不读取 content/blog、site.config.ts 或 astro:content。
+
+可声明的页面为 home、post、archive、page、notFound，前两个必需。manifest.engine 的 ^1.0.0 对应主题契约，不是 Core 包版本。
+
+[主题开发教程](https://github.com/cnflwzh/mintfolio/wiki/Theme-Development) 按顺序介绍设置、页面、搜索、打包与调试。[API 参考](https://github.com/cnflwzh/mintfolio/blob/main/docs/theme-api.md) 提供完整字段和行为说明。
+
+## 许可证
+
+[GPL-3.0-only](LICENSE)。保留许可证与来源说明，引入第三方素材时一并记录许可。

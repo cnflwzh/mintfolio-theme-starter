@@ -1,6 +1,6 @@
 {
   "name": "theme-mintfolio-starter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "files": [
@@ -8,7 +8,10 @@
     "src/assets",
     "src/pages",
     "src/layouts",
-    "src/styles"
+    "src/styles",
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "exports": {
     "./theme": "./theme.mjs"
@@ -29,5 +32,16 @@
     "check": "astro check && node node_modules/@typescript/native/bin/tsc --noEmit",
     "prepack": "npm run check",
     "deps:update": "node tools/update-local-deps.mjs"
+  },
+  "description": "Start a Mintfolio theme with two Astro pages and your own styles.",
+  "license": "GPL-3.0-only",
+  "author": "CNFLWZH",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnflwzh/mintfolio-theme-starter.git"
+  },
+  "homepage": "https://github.com/cnflwzh/mintfolio-theme-starter#readme",
+  "bugs": {
+    "url": "https://github.com/cnflwzh/mintfolio-theme-starter/issues"
   }
 }
