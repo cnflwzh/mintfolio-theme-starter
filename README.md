@@ -37,7 +37,7 @@ npm pack
 把生成的 tgz 放进已安装 Mintfolio 的测试站点，在站点目录运行：
 
 ~~~sh
-npm install ./theme-mintfolio-starter-1.0.1.tgz
+npm install ./theme-mintfolio-starter-1.0.2.tgz
 mintfolio theme use theme-mintfolio-starter
 mintfolio dev
 ~~~

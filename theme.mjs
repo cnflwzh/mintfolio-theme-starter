@@ -8,7 +8,7 @@ export default defineTheme({
   manifest: {
     id: 'starter',
     name: 'Starter',
-    version: '1.0.1',
+    version: '1.0.2',
     author: 'Mintfolio contributors',
     description: '用于创建独立 Mintfolio 主题的最小示例。',
     engine: '^1.0.0',
