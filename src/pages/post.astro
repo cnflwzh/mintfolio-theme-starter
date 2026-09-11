@@ -1,0 +1,24 @@
+---
+import type { PageProps, PostPageData } from '@mintfolio/core/astro';
+import ProtectedArticle from '@mintfolio/core/components/ProtectedArticle.astro';
+import StarterLayout from '../layouts/StarterLayout.astro';
+
+interface StarterSettings {
+  readonly accentColor: string;
+}
+
+interface Props extends PageProps<StarterSettings, PostPageData> {}
+
+const { theme, page } = Astro.props;
+const protectedBody = page.body.kind === 'protected' ? page.body : undefined;
+---
+
+<StarterLayout seo={page.seo} siteTitle={theme.site.title} homeUrl={theme.urls.home()} accentColor={theme.settings.accentColor}>
+  <article>
+    <h1>{page.post.title}</h1>
+    <p>{page.post.description}</p>
+    {page.body.kind === 'public' ? <div set:html={page.body.html} /> : protectedBody && (
+      <ProtectedArticle body={protectedBody} />
+    )}
+  </article>
+</StarterLayout>

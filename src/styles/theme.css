@@ -1,0 +1,8 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; }
+body { margin: 0; color: #1d1d1b; background: #fff; }
+main { width: min(calc(100% - 2rem), 46rem); margin: 0 auto; padding: 2rem 0; }
+a { color: var(--starter-accent); }
+.starter-site { display: flex; align-items: center; gap: 0.5rem; }
+.starter-site img { color: var(--starter-accent); }
+[data-protected-article] { border: 1px solid #aaa; padding: 1rem; }
+[data-protected-article] button { margin-left: 0.4rem; }

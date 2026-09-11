@@ -1,0 +1,33 @@
+{
+  "name": "theme-mintfolio-starter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "theme.mjs",
+    "src/assets",
+    "src/pages",
+    "src/layouts",
+    "src/styles"
+  ],
+  "exports": {
+    "./theme": "./theme.mjs"
+  },
+  "peerDependencies": {
+    "astro": "^7.3.2",
+    "@mintfolio/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "@astrojs/check": "^0.9.10",
+    "@mintfolio/core": "^0.1.0",
+    "astro": "^7.3.2",
+    "@types/node": "^22.20.2"
+  },
+  "scripts": {
+    "check": "astro check && node node_modules/@typescript/native/bin/tsc --noEmit",
+    "prepack": "npm run check",
+    "deps:update": "node tools/update-local-deps.mjs"
+  }
+}

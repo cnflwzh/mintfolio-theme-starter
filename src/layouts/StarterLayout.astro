@@ -1,0 +1,34 @@
+---
+import SeoHead from '@mintfolio/core/components/SeoHead.astro';
+import '../styles/theme.css';
+import markerUrl from '../assets/mark.svg?url';
+import type { SeoData } from '@mintfolio/core/astro';
+
+interface Props {
+  /** SEO metadata already calculated by Core. */
+  readonly seo: SeoData;
+  /** Public site title from the injected theme context. */
+  readonly siteTitle: string;
+  /** Core-owned URL for the home page. */
+  readonly homeUrl: string;
+  /** Validated color setting from this theme's manifest. */
+  readonly accentColor: string;
+}
+
+const { seo, siteTitle, homeUrl, accentColor } = Astro.props;
+---
+
+<!doctype html>
+<html lang={seo.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SeoHead seo={seo} />
+  </head>
+  <body style={`--starter-accent: ${accentColor}`}>
+    <main>
+      <p class="starter-site"><img src={markerUrl} width="24" height="24" alt="Mintfolio starter mark" /> <a href={homeUrl}>{siteTitle}</a></p>
+      <slot />
+    </main>
+  </body>
+</html>

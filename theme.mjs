@@ -1,0 +1,30 @@
+import { defineTheme } from '@mintfolio/core/theme';
+
+/**
+ * Small package-ready example. A real theme can add optional renderers and
+ * settings while continuing to consume only the public Mintfolio SDK.
+ */
+export default defineTheme({
+  manifest: {
+    id: 'starter',
+    name: 'Starter',
+    version: '1.0.0',
+    author: 'Mintfolio contributors',
+    description: '用于创建独立 Mintfolio 主题的最小示例。',
+    engine: '^1.0.0',
+  },
+  capabilities: {
+    encryptedPosts: true,
+  },
+  pages: {
+    home: './src/pages/home.astro',
+    post: './src/pages/post.astro',
+  },
+  settings: {
+    accentColor: {
+      type: 'color',
+      label: '强调色',
+      default: '#2255aa',
+    },
+  },
+});
