@@ -1,7 +1,6 @@
 {
   "name": "theme-mintfolio-starter",
   "version": "1.0.1",
-  "private": true,
   "type": "module",
   "files": [
     "theme.mjs",
@@ -43,5 +42,9 @@
   "homepage": "https://github.com/cnflwzh/mintfolio-theme-starter#readme",
   "bugs": {
     "url": "https://github.com/cnflwzh/mintfolio-theme-starter/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

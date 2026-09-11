@@ -18,7 +18,7 @@ npm ci
 
 | 文件 | 修改内容 |
 | --- | --- |
-| package.json | 自己的包名、作者和仓库地址；发布 npm 前移除 private |
+| package.json | 自己的包名、作者和仓库地址；如设置了 private，发布前移除 |
 | theme.mjs | id、显示名称、版本、页面与设置项 |
 | src/layouts/StarterLayout.astro | 页面框架、SEO 与导航 |
 | src/pages/home.astro | 首页 |
